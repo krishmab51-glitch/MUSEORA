@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Uploaded user images
+uploads/*
+!uploads/.gitkeep
+
+# Generated fusion results
+results/fusion/*
+!results/fusion/.gitkeep
+
+# Temporary files
+*.tmp
+.DS_Store
+
+# Environment secrets
+.env

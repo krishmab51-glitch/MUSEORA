@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#faf8ff">
+
+    <meta name="description"
+        content="MUSEORA is an AI creative studio where inspiration becomes imagination. Combine visual ideas and develop your own creative concepts.">
+
+    <title>MUSEORA — AI Fusion Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <a href="#home" class="logo">
+            <span class="logo-icon">M</span>
+            MUSEORA<span class="brand-period">.</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#studio">Fusion Studio</a>
+            <a href="#how-it-works">How It Works</a>
+        </div>
+
+        <a href="#studio" class="nav-button">
+            Start Creating ↗
+        </a>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            YOUR IDEAS, REIMAGINED
+        </div>
+
+        <h1>
+            Your imagination.<br>
+            <span>Without limits.</span>
+        </h1>
+
+        <p class="hero-description">
+            Bring together the images that inspire you.
+            Mix colours, styles, moods, and ideas to develop
+            a creative vision that feels entirely your own.
+        </p>
+
+        <a href="#studio" class="primary-button">
+            Enter Fusion Studio <span>↗</span>
+        </a>
+
+        <div class="hero-note">
+            A creative playground powered by AI technology.
+        </div>
+
+        <!-- Decorative visual composition -->
+
+        <div class="hero-artwork" aria-label="Creative inspiration collage">
+
+            <div class="art-card art-card-one">
+                <div class="art-gradient gradient-one"></div>
+                <span>COLOUR</span>
+            </div>
+
+            <div class="art-card art-card-two">
+                <div class="art-gradient gradient-two"></div>
+                <span>FORM</span>
+            </div>
+
+            <div class="art-card art-card-three">
+                <div class="art-gradient gradient-three"></div>
+                <span>MOOD</span>
+            </div>
+
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+
+            <div class="art-center">
+                M
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FUSION STUDIO -->
+
+    <section class="studio-section" id="studio">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">01 / YOUR CREATIVE SPACE</p>
+
+            <h2>Let's bring your ideas together.</h2>
+
+            <p>
+                Start with the images that inspire you.
+                You decide what belongs in your next creation.
+            </p>
+
+        </div>
+
+
+        <div class="studio-layout">
+
+            <!-- LEFT: IMAGE UPLOAD AND SELECTION -->
+
+            <div class="studio-main">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <p class="eyebrow">YOUR INSPIRATION</p>
+                        <h3>Collect your visual ideas</h3>
+                    </div>
+
+                    <span class="image-counter" id="imageCounter">
+                        0 / 5 images
+                    </span>
+
+                </div>
+
+
+                <!-- UPLOAD AREA -->
+
+                <div class="fusion-upload" id="fusionUpload">
+
+                    <input
+                        type="file"
+                        id="fusionInput"
+                        accept="image/png,image/jpeg,image/webp"
+                        multiple
+                        hidden
+                    >
+
+                    <div class="fusion-upload-icon">＋</div>
+
+                    <h4>Bring your inspiration here</h4>
+
+                    <p>
+                        Upload up to five images to start your
+                        creative exploration.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="browseFusion"
+                    >
+                        Choose images
+                    </button>
+
+                    <span class="file-note">
+                        JPG, PNG or WEBP · Maximum 10 MB per image
+                    </span>
+
+                </div>
+
+
+                <!-- SELECTED IMAGE CARDS -->
+
+                <div
+                    class="inspiration-grid"
+                    id="inspirationGrid"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- WHAT INSPIRES THE USER -->
+
+                <div class="inspiration-controls">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="eyebrow">02 / PICK YOUR ELEMENTS</p>
+                            <h3>What catches your eye?</h3>
+                        </div>
+
+                    </div>
+
+                    <p class="helper-text">
+                        Select as many elements as you like.
+                    </p>
+
+                    <div class="element-options">
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="colour palettes"
+                            >
+                            <span class="element-icon">◈</span>
+                            <span>Colours</span>
+                        </label>
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="visual styles"
+                            >
+                            <span class="element-icon">✳</span>
+                            <span>Style</span>
+                        </label>
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="lighting and atmosphere"
+                            >
+                            <span class="element-icon">☼</span>
+                            <span>Lighting</span>
+                        </label>
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="shapes and composition"
+                            >
+                            <span class="element-icon">◇</span>
+                            <span>Composition</span>
+                        </label>
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="textures and materials"
+                            >
+                            <span class="element-icon">▧</span>
+                            <span>Textures</span>
+                        </label>
+
+                        <label class="element-option">
+                            <input
+                                type="checkbox"
+                                name="elements"
+                                value="objects and subjects"
+                            >
+                            <span class="element-icon">✧</span>
+                            <span>Objects</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CREATIVE PROMPT -->
+
+                <div class="prompt-panel">
+
+                    <p class="eyebrow">03 / DESCRIBE YOUR VISION</p>
+
+                    <h3>What do you want to create?</h3>
+
+                    <p class="helper-text">
+                        Describe how you imagine your inspiration
+                        coming together.
+                    </p>
+
+                    <textarea
+                        id="visionInput"
+                        maxlength="1000"
+                        placeholder="For example: Create a dreamy futuristic city with warm sunset colours, reflective surfaces, and a cinematic atmosphere..."
+                    ></textarea>
+
+                    <div class="prompt-footer">
+
+                        <span id="characterCount">
+                            0 / 1000
+                        </span>
+
+                        <button
+                            type="button"
+                            class="text-button"
+                            id="clearPrompt"
+                        >
+                            Clear prompt
+                        </button>
+
+                    </div>
+
+                    <div class="suggestion-heading">
+                        Need an idea to get started?
+                    </div>
+
+                    <div class="prompt-suggestions">
+
+                        <button
+                            type="button"
+                            class="suggestion-chip"
+                            data-prompt="A dreamy, cinematic world with soft lighting and an atmospheric colour palette."
+                        >
+                            Dreamy & cinematic
+                        </button>
+
+                        <button
+                            type="button"
+                            class="suggestion-chip"
+                            data-prompt="A futuristic editorial concept with bold shapes, dramatic lighting, and unexpected colours."
+                        >
+                            Futuristic editorial
+                        </button>
+
+                        <button
+                            type="button"
+                            class="suggestion-chip"
+                            data-prompt="A peaceful nature-inspired composition with organic textures and muted earthy colours."
+                        >
+                            Nature-inspired
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CREATE CONCEPT BUTTON -->
+
+                <button
+                    type="button"
+                    class="create-button"
+                    id="createConcept"
+                >
+                    Build My Creative Concept <span>↗</span>
+                </button>
+
+                <p class="button-note">
+                    Your inspiration. Your choices. Your creative direction.
+                </p>
+
+            </div>
+
+
+            <!-- RIGHT: CREATIVE SUMMARY -->
+
+            <aside class="creative-sidebar">
+
+                <div class="sidebar-top">
+
+                    <p class="eyebrow">YOUR CREATIVE DIRECTION</p>
+
+                    <div class="sidebar-symbol">✳</div>
+
+                    <h3>Your vision, taking shape.</h3>
+
+                    <p>
+                        Your selected images, creative elements,
+                        and description will come together here.
+                    </p>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-block">
+
+                    <span class="summary-label">
+                        INSPIRATION IMAGES
+                    </span>
+
+                    <strong id="summaryImageCount">
+                        No images selected
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-block">
+
+                    <span class="summary-label">
+                        SELECTED ELEMENTS
+                    </span>
+
+                    <div
+                        class="selected-elements"
+                        id="selectedElements"
+                    >
+                        <span class="empty-tag">Nothing selected yet</span>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-block">
+
+                    <span class="summary-label">
+                        YOUR CREATIVE BRIEF
+                    </span>
+
+                    <p id="summaryBrief" class="summary-brief">
+                        Your description will appear here as you develop
+                        your idea.
+                    </p>
+
+                </div>
+
+
+                <div class="sidebar-bottom">
+
+                    <div class="companion-icon">M</div>
+
+                    <div>
+                        <strong>A little inspiration goes a long way.</strong>
+                        <p>Start with what you love.</p>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATIVE CONCEPT OUTPUT -->
+
+    <section class="concept-section" id="conceptSection" hidden>
+
+        <div class="section-heading">
+
+            <p class="eyebrow">04 / YOUR CREATIVE CONCEPT</p>
+
+            <h2>Your imagination, organised.</h2>
+
+            <p>
+                Here's a creative brief based on the inspiration
+                and elements you selected.
+            </p>
+
+        </div>
+
+        <div class="concept-card">
+
+            <div class="concept-card-top">
+
+                <div>
+                    <p class="eyebrow">MUSEORA CREATIVE BRIEF</p>
+                    <h3>Your next visual direction</h3>
+                </div>
+
+                <span class="concept-badge">
+                    CONCEPT
+                </span>
+
+            </div>
+
+
+            <div
+                class="concept-image-strip"
+                id="conceptImageStrip"
+            ></div>
+
+
+            <div class="concept-content">
+
+                <h4>Your vision</h4>
+
+                <p id="conceptDescription"></p>
+
+                <h4>Creative elements</h4>
+
+                <div
+                    class="concept-tags"
+                    id="conceptTags"
+                ></div>
+
+                <h4>Creative direction</h4>
+
+                <p id="conceptDirection"></p>
+
+            </div>
+
+
+            <div class="concept-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="editConcept"
+                >
+                    ← Continue editing
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="downloadBrief"
+                >
+                    Download Creative Brief ↓
+                </button>
+
+            </div>
+
+            <p class="concept-note">
+                This is a structured creative brief, not a generated image.
+                AI image generation will be integrated separately.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how-section" id="how-it-works">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">05 / THE MUSEORA METHOD</p>
+
+            <h2>From inspiration to imagination.</h2>
+
+            <p>
+                Your creative process starts with what catches your eye.
+            </p>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+            <article class="step-card">
+
+                <span class="step-number">01</span>
+
+                <div class="step-symbol">▧</div>
+
+                <h3>Gather inspiration</h3>
+
+                <p>
+                    Collect images that spark an idea, feeling,
+                    style, or visual direction.
+                </p>
+
+            </article>
+
+
+            <article class="step-card">
+
+                <span class="step-number">02</span>
+
+                <div class="step-symbol">✳</div>
+
+                <h3>Choose your elements</h3>
+
+                <p>
+                    Decide which colours, styles, textures,
+                    or compositions inspire you.
+                </p>
+
+            </article>
+
+
+            <article class="step-card">
+
+                <span class="step-number">03</span>
+
+                <div class="step-symbol">↗</div>
+
+                <h3>Develop your vision</h3>
+
+                <p>
+                    Turn your inspiration into a structured
+                    creative direction ready for further development.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <a href="#home" class="logo">
+            <span class="logo-icon">M</span>
+            MUSEORA<span class="brand-period">.</span>
+        </a>
+
+        <p>Where inspiration becomes imagination.</p>
+
+        <span>Built with curiosity.</span>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
