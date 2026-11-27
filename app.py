@@ -5,8 +5,6 @@
 import os
 import uuid
 
-import torch
-import torchvision
 import numpy as np
 
 from PIL import Image
@@ -14,7 +12,6 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
-from torchvision.models import resnet18, ResNet18_Weights
 from sklearn.metrics.pairwise import cosine_similarity
 
 from fusion import (
