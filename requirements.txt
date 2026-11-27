@@ -3,7 +3,7 @@ Flask-Cors
 numpy
 scikit-learn
 Pillow
-rembg
+rembg[cpu]
 gunicorn
 torch
 torchvision
