@@ -1,9 +1,10 @@
-
 import os
 import uuid
+import math
+import numpy as np
 
 from PIL import Image, ImageOps, ImageFilter, ImageDraw
-from rembg import remove
+from rembg import remove, new_session
 
 
 # ==========================================
@@ -20,6 +21,18 @@ os.makedirs(FUSION_FOLDER, exist_ok=True)
 
 MAX_IMAGES = 5
 
+# Lightweight AI model for background removal
+_rembg_session = None
+
+
+def get_rembg_session():
+    global _rembg_session
+
+    if _rembg_session is None:
+        _rembg_session = new_session("u2netp")
+
+    return _rembg_session
+
 
 # ==========================================
 # 2. BACKGROUND REMOVAL
@@ -27,8 +40,7 @@ MAX_IMAGES = 5
 
 def remove_background(image_path):
     """
-    Removes the background from an uploaded image
-    and saves the transparent image.
+    Removes the background using the lightweight U2NETP model.
     """
 
     try:
@@ -37,19 +49,28 @@ def remove_background(image_path):
             # Correct image orientation
             image = ImageOps.exif_transpose(image)
 
-            # Convert to RGBA
-            image = image.convert("RGBA")
+            # Convert to RGB
+            image = image.convert("RGB")
 
-            # Resize large images to reduce memory usage
+            # Reduce image dimensions to save RAM
             image.thumbnail(
-                (1600, 1600),
+                (800, 800),
                 Image.Resampling.LANCZOS
             )
 
-            # Remove background using rembg
-            output_image = remove(image)
+            # Convert to RGBA
+            image = image.convert("RGBA")
 
-            # Generate unique filename
+            # Load lightweight model when required
+            session = get_rembg_session()
+
+            # Remove background
+            output_image = remove(
+                image,
+                session=session
+            )
+
+            # Save transparent cutout
             filename = f"{uuid.uuid4().hex}_cutout.png"
 
             output_path = os.path.join(
@@ -57,11 +78,13 @@ def remove_background(image_path):
                 filename
             )
 
-            # Save transparent PNG
             output_image.save(
                 output_path,
                 format="PNG"
             )
+
+            output_image.close()
+            image.close()
 
             print("Background removed successfully!")
 
@@ -93,45 +116,34 @@ def create_composition(
     if len(image_paths) > MAX_IMAGES:
         raise ValueError("Maximum 5 images allowed.")
 
+    width = 1200
+    height = 900
+
     # ======================================
-    # 4. CREATE GRADIENT BACKGROUND
+    # CREATE MEMORY-EFFICIENT GRADIENT
     # ======================================
 
-    width, height = 1200, 900
+    y, x = np.mgrid[0:height, 0:width]
 
-    background = Image.new(
-        "RGBA",
-        (width, height)
+    ratio = (x + y) / (width + height)
+
+    r = (252 - ratio * 8).astype(np.uint8)
+    g = (249 - ratio * 7).astype(np.uint8)
+    b = (243 - ratio * 5).astype(np.uint8)
+
+    gradient = np.stack(
+        [r, g, b, np.full_like(r, 255)],
+        axis=-1
     )
 
-    for y in range(height):
-
-        for x in range(width):
-
-            ratio = (x + y) / (width + height)
-
-            r = int(252 - (ratio * 8))
-            g = int(249 - (ratio * 7))
-            b = int(243 - (ratio * 5))
-
-            background.putpixel(
-                (x, y),
-                (r, g, b, 255)
-            )
+    background = Image.fromarray(gradient, "RGBA")
 
     canvas = background
-        # ======================================
+
+    # ======================================
     # AMBIENT LIGHTING
     # ======================================
 
-    # Create a separate lighting layer
-    lighting = Image.new(
-        "RGBA",
-        (width, height),
-        (0, 0, 0, 0)
-    )
-
-    # Draw a warm glow behind the composition
     glow = Image.new(
         "RGBA",
         (width, height),
@@ -142,33 +154,23 @@ def create_composition(
 
     draw.ellipse(
         (250, 200, 950, 850),
-        fill=(255, 220, 160, 45)
+        fill=(255, 220, 160, 35)
     )
 
-    # Blur the glow for smooth ambient lighting
     glow = glow.filter(
-        ImageFilter.GaussianBlur(radius=110)
-    )
-
-    lighting = Image.alpha_composite(
-        lighting,
-        glow
+        ImageFilter.GaussianBlur(radius=80)
     )
 
     canvas = Image.alpha_composite(
         canvas,
-        lighting
+        glow
     )
 
-    
-    # ======================================
-    # 7. PROCESS EACH UPLOADED IMAGE
-    # ======================================
+    glow.close()
+
     # ======================================
     # AUTOMATIC COMPOSITION LAYOUT
     # ======================================
-
-    import math
 
     image_count = len(image_paths)
 
@@ -188,12 +190,16 @@ def create_composition(
     print("Columns:", columns)
     print("Rows:", rows)
 
+    # ======================================
+    # PROCESS EACH UPLOADED IMAGE
+    # ======================================
+
     for index, image_path in enumerate(image_paths):
 
-        with Image.open(image_path) as image:
+        with Image.open(image_path) as source_image:
 
             # Convert image to RGBA
-            image = image.convert("RGBA")
+            image = source_image.convert("RGBA")
 
             # Remove transparent margins
             bbox = image.getchannel("A").getbbox()
@@ -201,7 +207,7 @@ def create_composition(
             if bbox:
                 image = image.crop(bbox)
 
-                        # Calculate current grid position
+            # Calculate current grid position
             row = index // columns
             column = index % columns
 
@@ -249,7 +255,7 @@ def create_composition(
             )
 
             shadow_alpha = shadow_alpha.filter(
-                ImageFilter.GaussianBlur(radius=12)
+                ImageFilter.GaussianBlur(radius=8)
             )
 
             shadow = Image.new(
@@ -276,7 +282,15 @@ def create_composition(
                 (x, y)
             )
 
+            # Close temporary images
+            alpha.close()
+            shadow_alpha.close()
+            shadow.close()
+            image.close()
+
+    # ======================================
     # SAVE THE FINAL COMPOSITION
+    # ======================================
 
     output_path = os.path.join(
         FUSION_FOLDER,
@@ -289,5 +303,7 @@ def create_composition(
     )
 
     print("Composition saved successfully:", output_path)
+
+    canvas.close()
 
     return output_path
