@@ -5,3 +5,5 @@ scikit-learn
 Pillow
 rembg
 gunicorn
+torch
+torchvision
