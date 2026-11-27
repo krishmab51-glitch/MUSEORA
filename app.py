@@ -91,28 +91,50 @@ print("MUSEORA search data loaded!")
 print("Feature matrix:", IMAGE_FEATURES.shape)
 print("Label array:", IMAGE_LABELS.shape)
 
-
 # ============================================
-# 4. LOAD RESNET18 FEATURE EXTRACTOR
+# 4. LAZY LOAD RESNET18 FEATURE EXTRACTOR
 # ============================================
 
-device = torch.device(
-    "cuda" if torch.cuda.is_available() else "cpu"
-)
+model = None
+preprocess = None
+device = None
 
-weights = ResNet18_Weights.DEFAULT
 
-model = resnet18(weights=weights)
+def extract_image_features(image):
 
-model.fc = torch.nn.Identity()
+    global model, preprocess, device
 
-model = model.to(device)
-model.eval()
+    # Load ResNet18 only when visual search is used
+    if model is None:
 
-preprocess = weights.transforms()
+        import torch
+        from torchvision.models import resnet18, ResNet18_Weights
 
-print("ResNet18 feature extractor loaded!")
-print("Device:", device)
+        device = torch.device("cpu")
+
+        weights = ResNet18_Weights.DEFAULT
+
+        model = resnet18(weights=weights)
+        model.fc = torch.nn.Identity()
+
+        model = model.to(device)
+        model.eval()
+
+        preprocess = weights.transforms()
+
+        print("ResNet18 loaded when required!")
+
+    image = image.convert("RGB")
+
+    image_tensor = preprocess(image).unsqueeze(0)
+    image_tensor = image_tensor.to(device)
+
+    import torch
+
+    with torch.no_grad():
+        features = model(image_tensor)
+
+    return features.cpu().numpy()
 
 
 # ============================================
