@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+numpy
+scikit-learn
+Pillow
+rembg[cpu]
+gunicorn
+torch
+torchvision
