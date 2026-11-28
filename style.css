@@ -1240,3 +1240,781 @@ button {
         margin-top: 35px;
     }
 }
+/* ==========================================
+   MUSEORA — PREMIUM UI/UX ENHANCEMENTS
+========================================== */
+
+:root {
+    --accent: #9065e8;
+    --accent-light: #c5a9ff;
+    --deep-purple: #39245f;
+}
+
+/* SMOOTH PAGE EXPERIENCE */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 10% 10%, #f0e8ff 0%, transparent 30%),
+        radial-gradient(circle at 90% 45%, #fceafa 0%, transparent 28%),
+        #faf8ff;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    transition: all 0.35s ease;
+    background: rgba(250, 248, 255, 0.82);
+    backdrop-filter: blur(22px);
+}
+
+.logo {
+    letter-spacing: -1px;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.04);
+}
+
+.logo-icon {
+    transition: transform 0.4s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(12deg);
+}
+
+.nav-links a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 650px;
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(183, 151, 255, 0.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(255, 194, 225, 0.22),
+            transparent 30%
+        ),
+        #faf8ff;
+}
+
+.hero-badge {
+    border-radius: 30px;
+    animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+    animation: fadeUp 0.9s ease 0.1s both;
+}
+
+.hero-description {
+    animation: fadeUp 0.9s ease 0.2s both;
+}
+
+.hero .primary-button {
+    animation: fadeUp 0.9s ease 0.3s both;
+}
+
+.hero-note {
+    animation: fadeUp 0.9s ease 0.4s both;
+}
+
+/* FLOATING ART CARDS */
+
+.hero-artwork {
+    animation: artworkFloat 6s ease-in-out infinite;
+}
+
+.art-card {
+    border-radius: 22px;
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+    animation: cardFloat 5s ease-in-out infinite;
+}
+
+.art-card-one {
+    animation-delay: 0s;
+}
+
+.art-card-two {
+    animation-delay: 0.8s;
+}
+
+.art-card-three {
+    animation-delay: 1.5s;
+}
+
+.art-card:hover {
+    z-index: 5;
+    transform: translateY(-14px) rotate(0deg) scale(1.08);
+    box-shadow: 0 30px 65px rgba(75, 45, 125, 0.22);
+}
+
+.art-gradient {
+    transition: filter 0.4s ease;
+}
+
+.art-card:hover .art-gradient {
+    filter: saturate(1.3);
+}
+
+.art-center {
+    animation: centerPulse 3s ease-in-out infinite;
+}
+
+.art-orbit {
+    animation: orbitPulse 7s ease-in-out infinite;
+}
+
+/* BUTTON ANIMATIONS */
+
+.primary-button,
+.nav-button,
+.create-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+.primary-button:hover,
+.nav-button:hover,
+.create-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 35px rgba(121, 86, 216, 0.3);
+}
+
+.primary-button::before,
+.create-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.65s ease;
+}
+
+.primary-button:hover::before,
+.create-button:hover::before {
+    left: 150%;
+}
+
+/* STUDIO SECTION */
+
+.studio-section {
+    position: relative;
+    background:
+        radial-gradient(circle at 90% 10%, #e8dcff, transparent 35%),
+        #f1edfa;
+}
+
+.studio-main,
+.creative-sidebar,
+.concept-card,
+.step-card {
+    border: 1px solid rgba(220, 205, 250, 0.8);
+    box-shadow: 0 15px 45px rgba(64, 40, 105, 0.07);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.studio-main:hover,
+.creative-sidebar:hover {
+    box-shadow: 0 22px 55px rgba(64, 40, 105, 0.11);
+}
+
+/* ANIMATED UPLOAD AREA */
+
+.fusion-upload {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fcfaff, #f5efff);
+    border: 2px dashed #c8b3f4;
+    transition: all 0.35s ease;
+}
+
+.fusion-upload::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(166, 130, 235, 0.12),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.fusion-upload:hover::before {
+    transform: translateX(100%);
+}
+
+.fusion-upload:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(121, 86, 216, 0.12);
+}
+
+.fusion-upload-icon {
+    animation: uploadBounce 3s ease-in-out infinite;
+}
+
+/* IMAGE PREVIEWS */
+
+.inspiration-card {
+    transition: all 0.35s ease;
+}
+
+.inspiration-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(64, 40, 105, 0.13);
+}
+
+.inspiration-card img {
+    transition: transform 0.5s ease;
+}
+
+.inspiration-card:hover img {
+    transform: scale(1.07);
+}
+
+/* CREATIVE ELEMENTS */
+
+.element-option {
+    transition: all 0.3s ease;
+}
+
+.element-option:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px rgba(121, 86, 216, 0.1);
+}
+
+.element-option:has(input:checked) {
+    background: linear-gradient(135deg, #f5f0ff, #fff4fc);
+    border-color: var(--accent);
+    box-shadow: 0 5px 18px rgba(121, 86, 216, 0.1);
+}
+
+/* PROMPT BOX */
+
+#visionInput {
+    transition: all 0.3s ease;
+}
+
+#visionInput:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(144, 101, 232, 0.12);
+}
+
+/* SUGGESTION CHIPS */
+
+.suggestion-chip {
+    transition: all 0.3s ease;
+}
+
+.suggestion-chip:hover {
+    transform: translateY(-3px);
+    background: #f2eaff;
+}
+
+/* SIDEBAR */
+
+.creative-sidebar {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(15px);
+}
+
+.sidebar-symbol {
+    animation: symbolRotate 8s linear infinite;
+}
+
+/* HOW IT WORKS */
+
+.step-card {
+    overflow: hidden;
+}
+
+.step-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 20px 40px rgba(64, 40, 105, 0.12);
+}
+
+.step-symbol {
+    transition: all 0.4s ease;
+}
+
+.step-card:hover .step-symbol {
+    transform: rotate(12deg) scale(1.12);
+}
+
+/* FOOTER */
+
+.footer {
+    background: #f5f0fc;
+}
+
+/* ANIMATION KEYFRAMES */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes artworkFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -10px;
+    }
+}
+
+@keyframes centerPulse {
+    0%, 100% {
+        box-shadow: 0 6px 18px rgba(80, 55, 130, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 8px 30px rgba(121, 86, 216, 0.5);
+    }
+}
+
+@keyframes orbitPulse {
+    0%, 100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes uploadBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes symbolRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ACCESSIBILITY: RESPECT REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* Make the entire page vertically scrollable */
+html,
+body {
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* Prevent the main layout from being locked to screen height */
+main,
+.app,
+.app-container,
+.workspace {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+}
+
+/* Keep content panels from clipping */
+section,
+.panel {
+    overflow: visible;
+}
+
+/* =================================
+   MUSEORA — NEW EDITORIAL DESIGN
+================================= */
+
+:root {
+    --fusion-bg: #f5f3ed;
+    --fusion-surface: #ffffff;
+    --fusion-text: #151515;
+    --fusion-muted: #77736d;
+    --fusion-purple: #ff7900;
+    --fusion-purple-dark: #e56800;
+    --fusion-lavender: #fff0df;
+    --fusion-border: #dedbd3;
+}
+
+body {
+    background: #f5f3ed;
+    color: #151515;
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #151515;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    background: #151515;
+    border-bottom: none;
+    padding: 0 6%;
+    min-height: 85px;
+}
+
+.logo {
+    color: white;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    background: #ff7900;
+    color: #151515;
+    border-radius: 50%;
+    box-shadow: none;
+}
+
+.brand-period {
+    color: #ff7900;
+}
+
+.nav-links a {
+    color: #e5e5e5;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: #ff7900;
+}
+
+.nav-button {
+    background: #ff7900;
+    color: #151515;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+/* HERO */
+
+.hero {
+    background: #151515;
+    color: white;
+    padding: 110px 7% 100px;
+}
+
+.hero h1 {
+    color: white;
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -6px;
+    max-width: 900px;
+}
+
+.hero h1 span {
+    color: #ff7900;
+}
+
+.hero-description {
+    color: #c5c5c5;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 540px;
+}
+
+.hero-badge {
+    color: #ff7900;
+    letter-spacing: 2px;
+}
+
+.status-dot {
+    background: #ff7900;
+}
+
+.hero-note {
+    color: #999;
+}
+
+/* BUTTONS */
+
+.primary-button,
+.create-button {
+    background: #ff7900;
+    color: #151515;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.primary-button:hover,
+.create-button:hover {
+    background: #e56800;
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background: #151515;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.secondary-button:hover {
+    background: #333;
+}
+
+/* STUDIO */
+
+.studio-section {
+    background: #f5f3ed;
+    padding: 100px 6%;
+}
+
+.section-heading h2 {
+    font-size: clamp(38px, 5vw, 65px);
+    letter-spacing: -2.5px;
+}
+
+.eyebrow {
+    color: #e56800;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.studio-main,
+.creative-sidebar {
+    border-radius: 3px;
+    border: 1px solid #dedbd3;
+    box-shadow: none;
+}
+
+.studio-main {
+    background: white;
+}
+
+.creative-sidebar {
+    background: #151515;
+    color: white;
+}
+
+.creative-sidebar h3,
+.creative-sidebar strong {
+    color: white;
+}
+
+.creative-sidebar p {
+    color: #c0c0c0;
+}
+
+.sidebar-symbol {
+    color: #ff7900;
+}
+
+.summary-divider {
+    border-color: #444;
+}
+
+/* IMAGE UPLOAD */
+
+.fusion-upload {
+    background: #faf9f5;
+    border: 2px dashed #ff7900;
+    border-radius: 3px;
+}
+
+.fusion-upload:hover,
+.fusion-upload.drag-active {
+    background: #fff0df;
+    border-color: #e56800;
+}
+
+.fusion-upload-icon {
+    background: #ff7900;
+    color: #151515;
+    border-radius: 3px;
+}
+
+.image-counter {
+    background: #fff0df;
+    color: #e56800;
+}
+
+/* CREATIVE PROMPT */
+
+.prompt-panel,
+.inspiration-controls {
+    border-color: #dedbd3;
+}
+
+textarea {
+    border: 1px solid #dedbd3;
+    border-radius: 3px;
+}
+
+textarea:focus {
+    border-color: #ff7900;
+    outline: none;
+}
+
+.suggestion-chip {
+    border-radius: 3px;
+    border-color: #dedbd3;
+}
+
+.suggestion-chip:hover {
+    background: #ff7900;
+    color: #151515;
+}
+
+/* HOW IT WORKS */
+
+.how-section {
+    background: #eae7df;
+    padding: 100px 6%;
+}
+
+.step-card {
+    background: white;
+    border: 1px solid #dedbd3;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.step-number,
+.step-symbol {
+    color: #ff7900;
+}
+
+/* CONCEPT OUTPUT */
+
+.concept-card {
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+/* FOOTER */
+
+.footer {
+    background: #151515;
+    color: white;
+    padding: 45px 6%;
+}
+
+.footer p,
+.footer span {
+    color: #bdbdbd;
+}
+
+.footer .logo {
+    color: white;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .hero {
+        padding: 80px 6%;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .studio-section,
+    .how-section {
+        padding: 65px 5%;
+    }
+}
